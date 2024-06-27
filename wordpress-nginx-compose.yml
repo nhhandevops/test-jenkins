@@ -6,7 +6,7 @@ services:
     user: root
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: antsomi
+      MYSQL_ROOT_PASSWORD: antsomi1
       MYSQL_DATABASE: db_wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: antsomi
