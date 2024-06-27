@@ -1,0 +1,66 @@
+version: "3"
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    user: root
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: antsomi
+      MYSQL_DATABASE: db_wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: antsomi
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    ports:
+      - "10.197.0.121:9010:3306"
+    networks:
+      - app-network
+
+  wordpress:
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    image: wordpress:php8.3-fpm
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_PASSWORD: antsomi
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_NAME: db_wordpress
+    volumes:
+      - /var/www/html/wordpress:/var/www/html/wordpress
+    networks:
+      - app-network
+
+  nginx:
+    depends_on:
+      - wordpress
+    container_name: nginx
+    user: root
+    image: nginx:latest
+    restart: always
+    ports:
+      - "10.197.0.121:9011:8080"
+    volumes:
+      - ./nginx-conf/:/etc/nginx/conf.d/
+      - /var/www/html/wordpress:/var/www/html/wordpress
+    networks:
+      - app-network
+
+  haproxy:
+    container_name: haproxy
+    user: root
+    image: haproxy:latest
+    volumes:
+      - ./haproxy/haproxy.conf:/usr/local/etc/haproxy/haproxy.cfg
+    restart: always
+    ports:
+      - "10.197.0.121:9012:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+                                                                                                                                                                                             65,7          Bot
