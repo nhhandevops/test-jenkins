@@ -31,9 +31,9 @@ services:
     networks:
       - wordpress-net
 
-  phpadmin:
+  phpmyadmin:
     container_name: ${CONTAINER_NAME}-phpadmin
-    iamge: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin
     env_file: .env
     environment:
       PMA_HOST: database
@@ -60,7 +60,8 @@ services:
       - /var/www/html:/var/www/html
       - wordpress:/var/www/html
       - ./src:/var/www/html/wp-content
-
+    networks:
+      - wordpress-net
 
 volumes:
   dbdata:
