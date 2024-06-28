@@ -59,6 +59,7 @@ services:
     volumes:
       - /var/www/html:/var/www/html
       - wordpress:/var/www/html
+      - ./src:/var/www/html/wp-content
 
 
 volumes:
