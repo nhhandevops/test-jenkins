@@ -59,8 +59,7 @@ services:
     volumes:
       - /var/www/html:/var/www/html
       - ./src:/var/www/html/wp-content
-    networks:
-      - wordpress-net
+
 
 volumes:
   dbdata:
