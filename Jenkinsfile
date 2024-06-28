@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy to Wordpress Container') {
             steps {
                 sh '''
-                    docker restart fd8463a867f8
+                    sudo docker restart fd8463a867f8
                 '''
             }
         }
