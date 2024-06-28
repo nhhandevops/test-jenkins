@@ -1,0 +1,70 @@
+version: '3'
+services:
+  nginx:
+    container_name: ${CONTAINER_NAME}-nginx
+    image: nginx:1.15.12-alpine
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${IP_ADDRESS}:4800:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - wordpress:/var/www/html
+    networks:
+      - wordpress-net
+  
+  database:
+    container_name: ${CONTAINER_NAME}-mysql
+    image: mysql:8.0
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+      MYSQL_USER: ${DATABASE_USER}
+    ports:
+      - "${IP_ADDRESS}:4801:3306"
+    
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - wordpress-net
+
+  phpadmin:
+    container_name: ${CONTAINER_NAME}-phpadmin
+    iamge: phpmyadmin/phpmyadmin
+    env_file: .env
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
+    ports:
+      - "{IP_ADDRESS}:4802:80"
+    networks:
+      - wordpress-net
+  
+  wordpress:
+    depends_on:
+      - database
+    container_name: ${CONTAINER_NAME}-wordpress
+    image: wordpress:6.5.2-fpm-alpine
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_NAME: '${DATABASE_NAME}'
+      WORDPRESS_DB_USER: '${DATABASE_USER}'
+      WORDPRESS_DB_PASSWORD: '${DATABASE_PASSWORD}'
+    volumes:
+      - /var/www/html:/var/www/html
+      - wordpress:/var/www/html
+
+
+volumes:
+  dbdata:
+  wordpress:
+
+networks:
+  wordpress-net:
+    driver: bridge
