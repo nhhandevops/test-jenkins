@@ -5,7 +5,7 @@ pipeline {
         stage('Update WordPress about.php') {
             steps {
                 sh '''
-                    sed -i "s/WordPress Version/Test Jenkins With WordPress/g" /var/www/html/wp-admin/about.php
+                    sudo sed -i "s/WordPress Version/Test Jenkins With WordPress/g" /var/www/html/wp-admin/about.php
                 '''
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage('Deploy to Wordpress Container') {
             steps {
                 sh '''
-                    docker restart fd8463a867f8
+                    sudo docker restart fd8463a867f8
                 '''
             }
         }
