@@ -11,8 +11,9 @@ pipeline {
         // }
         stage('Update WordPress about.php') {
             steps {
-                sh '''
-                    sudo sed -i "s/WordPress Version/Test Jenkins With WordPress/g" /var/www/html/wp-admin/about.php
+                sh '''  
+                    sudo su
+                    sed -i "s/WordPress Version/Test Jenkins With WordPress/g" /var/www/html/wp-admin/about.php
                 '''
             }
         }
