@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   nginx:
     container_name: ${CONTAINER_NAME}-nginx
@@ -31,16 +31,16 @@ services:
     networks:
       - wordpress-net
 
-  phpadmin:
+  phpmyadmin:
     container_name: ${CONTAINER_NAME}-phpadmin
-    iamge: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin
     env_file: .env
     environment:
       PMA_HOST: database
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
     ports:
-      - "${IP_ADDRESS}:4802:80"
+      - "10.197.0.121:4802:80"
     networks:
       - wordpress-net
   
@@ -60,6 +60,7 @@ services:
       - /var/www/html:/var/www/html
       - wordpress:/var/www/html
       - ./src:/var/www/html/wp-content
+
 
 volumes:
   dbdata:
