@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   nginx:
     container_name: ${CONTAINER_NAME}-nginx
@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - "${IP_ADDRESS}:4800:80"
+      - "10.197.0.121:4800:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - wordpress:/var/www/html
@@ -24,7 +24,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
       MYSQL_USER: ${DATABASE_USER}
     ports:
-      - "${IP_ADDRESS}:4801:3306"
+      - "10.197.0.121:4801:3306"
     
     volumes:
       - dbdata:/var/lib/mysql
@@ -40,7 +40,7 @@ services:
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
     ports:
-      - "{IP_ADDRESS}:4802:80"
+      - "10.197.0.121:4802:80"
     networks:
       - wordpress-net
   
