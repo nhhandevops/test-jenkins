@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 sh '''  
-                    docker build -t nhhan2504:redis-production -f ./redis
+                    docker build -f redis -t nhhan2504:redis-production .
                     docker push nhhan2504:redis-production
                 '''
             }
@@ -22,7 +22,7 @@ pipeline {
         {
             steps {
                 sh '''
-                    docker build -t nhhan2504:redis-sandbox -f .redis
+                    docker build -f redis -t nhhan2504:redis-sandbox .
                     docker push nhhan2504:redis-sandbox
                 '''
             }
