@@ -12,8 +12,8 @@ pipeline {
         stage('Build Docker') {
             steps {
                 sh '''  
-                    docker build -t redis:production -f ./redis
-                    docker push redis:production
+                    docker build -t nhhan2504:redis-production -f ./redis
+                    docker push nhhan2504:redis-production
                 '''
             }
         }
@@ -22,8 +22,8 @@ pipeline {
         {
             steps {
                 sh '''
-                    docker build -t redis:sandbox -f .redis
-                    docker push redis:sandbox
+                    docker build -t nhhan2504:redis-sandbox -f .redis
+                    docker push nhhan2504:redis-sandbox
                 '''
             }
         }
@@ -31,8 +31,8 @@ pipeline {
         stage('Deploy to Wordpress Container') {
             steps {
                 sh '''
-                    docker run --rm redis:production
-                    docker run --rm redis:sandbox
+                    docker run --rm nhhan2504:redis-production
+                    docker run --rm nhhan2504:redis-sandbox
                 '''
             }
         }
