@@ -27,7 +27,6 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm -p 6379:6379 --name my-redis nhhan2504/jenkins:production
-
                 '''
             }
         }
