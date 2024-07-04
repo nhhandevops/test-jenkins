@@ -5,9 +5,9 @@ pipeline {
         stage('Build Docker') {
             steps {
                 sh '''  
-                    docker build -f redis/Dockerfile -t nhhan2504/jenkins:production .
+                    docker build -f redis/Dockerfile -t nhhan2504/jenkins:production-version2 .
                     docker login -u nhhan2504 -p LoveHoa2304 docker.io
-                    docker push nhhan2504/jenkins:production
+                    docker push nhhan2504/jenkins:production-version2
                 '''
             }
         }
@@ -16,9 +16,9 @@ pipeline {
         {
             steps {
                 sh '''
-                    docker build -f redis/Dockerfile -t nhhan2504/sandbox:version1 .
+                    docker build -f redis/Dockerfile -t nhhan2504/sandbox:version2 .
                     docker login -u nhhan2504 -p LoveHoa2304 docker.io
-                    docker push nhhan2504/sandbox:version1
+                    docker push nhhan2504/sandbox:version2
                 '''
             }
         }
