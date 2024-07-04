@@ -1,9 +1,8 @@
 FROM redis:latest
 
-COPY ./redis /build/redis-test
+COPY ./redis /etc/redis
 
-WORKDIR /build/redis-test
-RUN ls /build/redis-test
+WORKDIR /etc/redis
 
-CMD ["redis-server", "/build/redis/master.conf"]
+CMD ["redis-server"]
 
