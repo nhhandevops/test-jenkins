@@ -1,6 +1,6 @@
 FROM redis:latest
 
-COPY ./redis/master.conf /build/redis-test
+COPY ./redis /build/redis-test
 
 WORKDIR /build/redis-test
 
