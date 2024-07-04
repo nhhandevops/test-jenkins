@@ -2,18 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Docker Login') {
-            steps {
-                sh '''
-                    docker login -u nhhan2504 -p LoveHoa2304
-                '''
-            }
-        }
         stage('Build Docker') {
             steps {
                 sh '''  
-                    docker build -f redis/Dockerfile -t nhhan2504:jenkins .
-                    docker tag nhhan2504/jenkins:production
+                    docker build -f redis/Dockerfile -t nhhan2504/jenkins:production .
+                    docker login -u nhhan2504 -p LoveHoa2304 docker.io
                     docker push nhhan2504/jenkins:production
                 '''
             }
@@ -23,8 +16,8 @@ pipeline {
         {
             steps {
                 sh '''
-                    docker build -f redis -t nhhan2504:sandbox .
-                    docker nhhan2504/sandbox:version1
+                    docker build -f redis -t nhhan2504/sandbox:version1 .
+                     docker login -u nhhan2504 -p LoveHoa2304 docker.io
                     docker push nhhan2504/sandbox:version1
                 '''
             }
