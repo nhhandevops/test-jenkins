@@ -2,17 +2,28 @@ pipeline {
     agent any
 
     stages {
-        // stage('Bypass passwd for jenkins') {
-        //     steps{
-        //         sh '''
-        //             echo 'jenkins ALL=(ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
-        //         '''
-        //     }
-        // }
-        stage('Update WordPress about.php') {
+        stage('Docker Login') {
+            steps {
+                sh '''
+                    docker login -u nhhan2504 -p LoveHoa2304
+                '''
+            }
+        }
+        stage('Build Docker') {
             steps {
                 sh '''  
-                    sudo sed -i "s/WordPress Version/Test Jenkins With WordPress/g" /var/www/html/wp-admin/about.php
+                    docker build -t redis:production -f ./redis
+                    docker push redis:production
+                '''
+            }
+        }
+
+        stage('Push image to docker hub')
+        {
+            steps {
+                sh '''
+                    docker build -t redis:sandbox -f .redis
+                    docker push redis:sandbox
                 '''
             }
         }
@@ -20,7 +31,8 @@ pipeline {
         stage('Deploy to Wordpress Container') {
             steps {
                 sh '''
-                    sudo docker restart fd8463a867f8
+                    docker run --rm redis:production
+                    docker run --rm redis:sandbox
                 '''
             }
         }
