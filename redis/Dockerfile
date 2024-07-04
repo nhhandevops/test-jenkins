@@ -1,6 +1,6 @@
 FROM redis:latest
 
-COPY ./redis /etc/redis
+COPY ./redis/master.conf /etc/redis/redis.conf
 
 WORKDIR /etc/redis
 
