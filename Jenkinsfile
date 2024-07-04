@@ -26,8 +26,8 @@ pipeline {
         stage('Deploy to Wordpress Container') {
             steps {
                 sh '''
-                    docker run --rm nhhan2504:jenkins
-                    docker run --rm nhhan2504:sandbox
+                    docker run --rm nhhan2504/jenkins:production
+
                 '''
             }
         }
