@@ -13,7 +13,8 @@ pipeline {
             steps {
                 sh '''  
                     docker build -f redis/Dockerfile -t nhhan2504:jenkins .
-                    docker push nhhan2504:jenkins
+                    docker tag nhhan2504/jenkins:production
+                    docker push nhhan2504/jenkins:production
                 '''
             }
         }
@@ -23,7 +24,8 @@ pipeline {
             steps {
                 sh '''
                     docker build -f redis -t nhhan2504:sandbox .
-                    docker push nhhan2504:sandbox
+                    docker nhhan2504/sandbox:version1
+                    docker push nhhan2504/sandbox:version1
                 '''
             }
         }
