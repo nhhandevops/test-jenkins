@@ -8,6 +8,7 @@ pipeline {
                     docker build -f redis/Dockerfile -t nhhan2504/jenkins:production-version4 .
                     docker login -u nhhan2504 -p LoveHoa2304 docker.io
                     docker push nhhan2504/jenkins:production-version4
+                    
                 '''
             }
         }
