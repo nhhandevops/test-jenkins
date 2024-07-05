@@ -1,8 +1,9 @@
 pipeline {
-    agent label 'ssh-agent'
+    agent any
 
     stages {
         stage('Build and Push Docker image production to docker hub') {
+            agent {label 'ssh-agent'}
             steps {
                 sh '''  
                     docker build -f redis/Dockerfile -t nhhan2504/jenkins:production-version4 .
@@ -14,6 +15,7 @@ pipeline {
 
         stage('Build and Push image sandbox to docker hub')
         {
+            agent {label 'ssh-agent'}
             steps {
                 sh '''
                     docker build -f redis/Dockerfile -t nhhan2504/sandbox:version4 .
@@ -24,6 +26,7 @@ pipeline {
         }
 
         stage('Deploy to Wordpress Container') {
+            agent {label 'ssh-agent'}
             steps {
                 sh '''
                     docker run -d --sysctl net.core.somaxconn=65535 -p 6379:6379 --name my-redis nhhan2504/jenkins:production-version4
