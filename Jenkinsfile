@@ -1,6 +1,6 @@
 pipeline {
     agent any
-#tes
+
     stages {
         stage('Build and Push Docker image production to docker hub') {
             steps {
