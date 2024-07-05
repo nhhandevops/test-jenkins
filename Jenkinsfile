@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'ssh-agent'
-    }
+    agent any
 
     stages {
         stage('Build and Push Docker image production to docker hub') {
