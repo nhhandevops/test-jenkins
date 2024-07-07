@@ -1,0 +1,29 @@
+version: 0.2
+
+env:
+  variables:
+    MY_DOCKER_IMAGE_TAG: "version5"
+    MY_DOCKER_IMAGE_NAME: "jenkins"
+
+  parameter_store:
+    DOCKER_USERNAME: "user-docker"
+    DOCKER_PASSWORD: "pass-docker"
+
+phases:
+  pre-build:
+    commands:
+      - echo "Log in to Docker Hub"
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  
+  build:
+    commands:
+      - echo "Build image"
+      - docker build -f redis/Dockerfile -t $DOCKER_USERNAME/$MY_DOCKER_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo "Push image to Docker Hub"
+      - docker push $DOCKER_USERNAME/$MY_DOCKER_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG
+
+
+
