@@ -22,8 +22,5 @@ phases:
 
   post_build:
     commands:
-      - echo "Push image to Docker Hub"
+      - echo "Push image to Docker Hub."
       - docker push $DOCKER_USERNAME/$MY_DOCKER_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG
-
-
-
