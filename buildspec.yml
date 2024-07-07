@@ -10,7 +10,7 @@ env:
     DOCKER_PASSWORD: "pass-docker"
 
 phases:
-  pre-build:
+  pre_build:
     commands:
       - echo "Log in to Docker Hub"
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
