@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    MY_DOCKER_IMAGE_TAG: "version5"
-    MY_DOCKER_IMAGE_NAME: "jenkins"
+    MY_DOCKER_IMAGE_TAG: "version1"
+    MY_DOCKER_IMAGE_NAME: "wordpress"
 
   parameter-store:
     DOCKER_USERNAME: "user-docker"

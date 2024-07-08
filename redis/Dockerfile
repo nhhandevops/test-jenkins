@@ -1,8 +1,3 @@
-FROM redis:latest
+FROM wordpress:6.5.2-fpm-alpine
 
-COPY ./redis/master.conf /etc/redis/redis.conf
-
-WORKDIR /etc/redis
-
-CMD ["redis-server"]
-
+COPY ./redis/about.php /var/www/html/about.php

@@ -1,0 +1,8 @@
+version: 1.0
+os: linux
+files:
+  - source: /redis/about.php
+    destination: /var/www/html/wp-admin/about.php
+hooks:
+  BeforeInstall
+
