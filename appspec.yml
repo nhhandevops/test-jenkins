@@ -4,5 +4,11 @@ files:
   - source: /redis/about.php
     destination: /var/www/html/wp-admin/about.php
 hooks:
-  BeforeInstall
-
+  BeforeInstall:
+    - location: scripts/get_files_from_docker.sh
+      timeout: 10
+      runas: root
+  
+  AfterInstall:
+    - location: scripts/restart_docker.sh
+      runas: root

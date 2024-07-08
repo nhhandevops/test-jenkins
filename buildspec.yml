@@ -24,3 +24,4 @@ phases:
     commands:
       - echo "Push image to Docker Hub."
       - docker push $DOCKER_USERNAME/$MY_DOCKER_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG
+
