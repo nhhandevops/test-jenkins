@@ -6,10 +6,10 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - "10.197.0.121:4800:80"
+      - "4800:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - wordpress:/var/www/html
+      - /var/www/html:/var/www/html
     networks:
       - wordpress-net
   
@@ -24,7 +24,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
       MYSQL_USER: ${DATABASE_USER}
     ports:
-      - "10.197.0.121:4801:3306"
+      - "4801:3306"
     
     volumes:
       - dbdata:/var/lib/mysql
@@ -40,7 +40,7 @@ services:
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
     ports:
-      - "10.197.0.121:4802:80"
+      - "4802:80"
     networks:
       - wordpress-net
   
@@ -59,12 +59,12 @@ services:
     volumes:
       - /var/www/html:/var/www/html
       - ./src:/var/www/html/wp-content
+    networks:
+      - wordpress-net
 
 
 volumes:
   dbdata:
-  wordpress:
 
 networks:
   wordpress-net:
-    driver: bridge
