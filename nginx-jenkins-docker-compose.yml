@@ -48,7 +48,7 @@ services:
     depends_on:
       - database
     container_name: ${CONTAINER_NAME}-wordpress
-    image: wordpress:6.5.2-fpm-alpine
+    image: nhhan2504/wordpress:version1
     restart: unless-stopped
     env_file: .env
     environment:
