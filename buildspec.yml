@@ -1,6 +1,6 @@
 version: 0.2
 
-env:
+env: 
   variables:
     MY_DOCKER_IMAGE_TAG: "version1"
     MY_DOCKER_IMAGE_NAME: "wordpress"
