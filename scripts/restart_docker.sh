@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#Restart container wordpress
-docker restart codepipeline-wordpress
+#Run docker compose wordpress
+docker-compose -f nginx-jenkins-docker-compose.yml up -d
