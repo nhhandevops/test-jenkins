@@ -25,7 +25,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 					<?php
 					printf(
 						/* translators: %s: Version number. */
-						__( 'WordPress CodeDeploy Test%s' ),
+						__( 'WordPress CodeDeploy %s' ),
 						$display_version
 					);
 					?>
