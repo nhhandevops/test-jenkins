@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#stop all container
+#stop all container 
 docker-compose -f nginx-jenkins-docker-compose.yml
