@@ -1,4 +1,4 @@
 #!/bin/bash
 
 #stop all container 
-docker-compose -f nginx-jenkins-docker-compose.yml down
+docker-compose -f test-jenkins/nginx-jenkins-docker-compose.yml down
