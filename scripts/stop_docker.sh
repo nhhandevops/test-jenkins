@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#get new update in repo 
+#get new update in repo
 git pull origin main
 
 #stop all container 
