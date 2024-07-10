@@ -4,7 +4,7 @@ files:
   - source: /
     destination: /home/ec2-user/test-jenkins
 
-files_exists_behavior: OVERWRITE
+file_exists_behavior: OVERWRITE
 hooks:
   
   BeforeInstall:
