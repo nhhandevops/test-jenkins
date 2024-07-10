@@ -3,14 +3,10 @@ os: linux
 files:
   - source: /nginx-jenkins-docker-compose.yml
     destination: /home/ec2-user/test-jenkins
-  - source: /wordpress-new
-    destination: /home/ec2-user/test-jenkins
+
 files_exists_behavior: OVERWRITE
 hooks:
-  # ApplicationStop:
-  #   - location: scripts/stop_docker.sh
-  #     timeout: 30
-  #     runas: ec2-user
+  
   BeforeInstall:
     - location: scripts/get_files_from_docker.sh
       timeout: 30
