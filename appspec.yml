@@ -1,5 +1,8 @@
 version: 0.0
 os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/test-jenkins
 hooks:
   ApplicationStop:
    - location: scripts/stop_docker.sh
