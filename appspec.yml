@@ -1,7 +1,9 @@
 version: 0.1
 os: linux
 files:
-  - source: /
+  - source: /nginx-jenkins-docker-compose.yml
+    destination: /home/ec2-user/test-jenkins
+  - source: /wordpress-new
     destination: /home/ec2-user/test-jenkins
 files_exists_behavior: OVERWRITE
 hooks:
