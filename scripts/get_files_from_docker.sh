@@ -7,4 +7,4 @@ docker rm temp-wordpress
 docker create --name temp-wordpress nhhan2504/wordpress:version1
 
 #Copy the new files from the container
-docker cp temp-wordpress:/var/www/html/wp-admin ./wordpress-new/
+sudo docker cp temp-wordpress:/var/www/html/wp-admin ./wordpress-new/
