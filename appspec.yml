@@ -12,7 +12,7 @@ hooks:
 
     - location: scripts/get_files_from_docker.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   AfterInstall:
     - location: scripts/restart_docker.sh
       timeout: 300
