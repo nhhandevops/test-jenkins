@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage{"verify install"} {
+        stage("verify install") {
             steps {
                 sh '''
                     docker version
