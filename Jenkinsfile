@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t nhhan2504/helloworld-python'
+                sh 'docker build -t nhhan2504/helloworld-python .'
             }
         }
 
