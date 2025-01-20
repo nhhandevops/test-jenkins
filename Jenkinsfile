@@ -9,7 +9,7 @@ pipeline {
 
         stage('Login') {
             steps {
-                withCredentials([vaultString(credentialsId: 'vault-docker', variable: 'DOCKER_TOKEN')]){
+                withCredentials([vaultString(credentialsId: 'token-docker-nhhan', variable: 'DOCKER_TOKEN')]){
                     sh 'docker login -u nhhan2504 --password $DOCKER_TOKEN'
                 }
                 
