@@ -1,30 +1,40 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKERHUB_IMAGE = 'nhhan2504/helloworld-python'
+    }
+
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t nhhan2504/helloworld-python .'
+                sh 'docker build -t ${DOCKERHUB_IMAGE}:${BUILD_NUMBER} -t ${DOCKERHUB_IMAGE}:latest .'
             }
         }
 
         stage('Login') {
             steps {
-                withCredentials([vaultString(credentialsId: 'token-docker-nhhan', variable: 'DOCKER_TOKEN')]){
-                    sh 'docker login -u nhhan2504 --password $DOCKER_TOKEN'
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-token',
+                    usernameVariable: 'DOCKERHUB_USERNAME',
+                    passwordVariable: 'DOCKERHUB_TOKEN'
+                )]) {
+                    sh 'printf "%s" "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin'
                 }
-                
             }
         }
 
         stage('Push') {
             steps {
-                sh 'docker push nhhan2504/helloworld-python:latest'
+                sh 'docker push ${DOCKERHUB_IMAGE}:${BUILD_NUMBER}'
+                sh 'docker push ${DOCKERHUB_IMAGE}:latest'
             }
         }
     }
+
     post {
         always {
-            sh 'docker logout'
+            sh 'docker logout || true'
         }
     }
 }
