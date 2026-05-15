@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Syntax Check') {
             steps {
-                sh 'python3 -m py_compile hello.py'
+                sh 'find . -name "*.py" -print -exec python3 -m py_compile {} \\;'
             }
         }
         stage('SonarQube Analysis') {
