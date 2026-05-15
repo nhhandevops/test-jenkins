@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_IMAGE = 'nhhan2504/helloworld-python'
-        SONAR_PROJECT_KEY = 'test-app'
+        SONAR_PROJECT_KEY = 'Test-App'
     }
     stages {
         stage('Syntax Check') {
